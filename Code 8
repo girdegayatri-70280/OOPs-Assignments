@@ -1,0 +1,33 @@
+interface Filterable {
+    void apply_filter(String t);
+    void reset_filter();
+}
+
+class ImageProcessor implements Filterable {
+    public void apply_filter(String t) {
+        System.out.println("Image " + t);
+    }
+
+    public void reset_filter() {
+        System.out.println("Image reset");
+    }
+}
+
+class DataAnalyzer implements Filterable {
+    public void apply_filter(String t) {
+        System.out.println("Data " + t);
+    }
+
+    public void reset_filter() {
+        System.out.println("Data reset");
+    }
+}
+
+class Main {
+    public static void main(String[] args) {
+        Filterable f1 = new ImageProcessor();
+        Filterable f2 = new DataAnalyzer();
+        f1.apply_filter("blur");
+        f2.apply_filter("clean");
+    }
+}
