@@ -1,0 +1,42 @@
+import java.util.*;
+
+class Book {
+    String title, author, isbn;
+
+    Book(String t, String a, String i) {
+        title = t;
+        author = a;
+        isbn = i;
+    }
+
+    void display() {
+        System.out.println(title + " " + author + " " + isbn);
+    }
+}
+
+class Library {
+    ArrayList<Book> list = new ArrayList<>();
+
+    void addBook(Book b) {
+        list.add(b);
+    }
+
+    void removeBook(String isbn) {
+        list.removeIf(b -> b.isbn.equals(isbn));
+    }
+
+    void display() {
+        for (Book b : list) b.display();
+    }
+}
+
+class Main {
+    public static void main(String[] args) {
+        Library l = new Library();
+        l.addBook(new Book("A","X","1"));
+        l.addBook(new Book("B","Y","2"));
+        l.display();
+        l.removeBook("1");
+        l.display();
+    }
+}
