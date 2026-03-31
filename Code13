@@ -1,0 +1,46 @@
+abstract class Employee {
+    String name;
+    int id;
+
+    Employee(String name, int id) {
+        this.name = name;
+        this.id = id;
+    }
+
+    abstract double calculateBonus(double salary);
+}
+
+class Manager extends Employee {
+    Manager(String name, int id) {
+        super(name, id);
+    }
+
+    double calculateBonus(double salary) {
+        return salary * 0.20;
+    }
+}
+
+class Developer extends Employee {
+    double incentive;
+
+    Developer(String name, int id, double incentive) {
+        super(name, id);
+        this.incentive = incentive;
+    }
+
+    double calculateBonus(double salary) {
+        return salary * 0.10 + incentive;
+    }
+}
+
+public class Main13 {
+    public static void main(String[] args) {
+        Employee e;
+
+        e = new Manager("Amit", 1);
+        System.out.println(e.calculateBonus(50000));
+
+        e = new Developer("Rahul", 2, 5000);
+        System.out.println(e.calculateBonus(50000));
+    }
+}
