@@ -1,0 +1,11 @@
+import java.util.Scanner;
+
+public class PasswordMaskingSystem {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String password = sc.nextLine();
+        int len = password.length();
+        String masked = password.substring(0, len - 2).replaceAll(".", "*") + password.substring(len - 2);
+        System.out.println(masked);
+    }
+}
