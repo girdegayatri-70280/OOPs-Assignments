@@ -1,0 +1,32 @@
+class Restaurant {
+    boolean available = false;
+
+    synchronized void prepare() {
+        try {
+            while (available) wait();
+            System.out.println("Chef prepared food");
+            available = true;
+            notify();
+        } catch (Exception e) {
+        }
+    }
+
+    synchronized void serve() {
+        try {
+            while (!available) wait();
+            System.out.println("Waiter served food");
+            available = false;
+            notify();
+        } catch (Exception e) {
+        }
+    }
+}
+
+public class Main21 {
+    public static void main(String[] args) {
+        Restaurant r = new Restaurant();
+
+        new Thread(() -> r.prepare()).start();
+        new Thread(() -> r.serve()).start();
+    }
+}
